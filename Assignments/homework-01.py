@@ -147,10 +147,12 @@ Usage: replace_all(d,3,1)
 Results: {1: {2: 1, 3: 4}, 2: {4: 4, 5: 1}} 
 """
 def replace_all(d, x, y):
-  for k1 in d.keys():   #retrive all keys in the dictionary
-    for k2, v2 in d[k1].items():    #retrive the keys and values of the dictionary in the dictionary
-      if v2 == x:   #check is the value is x
-          d[k1][k2] = y     #replace the x value with y
+  for k, v in d.items():   #retrive all pairs in the dictionary
+    if type(v) is dict:     #check if v is a dictionary 
+      replace_all(v, x, y)
+    else:
+      if v == x:   #check is the value is x
+        d[k] = y     #replace the x value with y
  
 #J
 """
