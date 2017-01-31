@@ -1,3 +1,4 @@
+#```python
 """
 Name: Huiluo Chen
 Email: dannysirchen@gmail.com
@@ -34,6 +35,9 @@ Would result in: [3, 2, 5, 7]
 def remove_all(el, lst):
     while el in x:  #check if el is present in list x 
         lst.remove(el)  #remove the element el
+x = [3, 1, 2, 1, 5, 1, 1, 7]
+remove_all(1, x)
+print(x)
 
 #C
 """
@@ -46,6 +50,9 @@ def add_this_many(x, y, lst):
     for i in range(len(lst)):   #loop through the list
         if lst[i] == x:     #check if x presents
             lst.append(y)   #append y if x presents
+lst = [1, 2, 4, 2, 1]
+add_this_many(1, 5, lst)
+print(lst)
 
 #D
 a = [3, 1, 4, 2, 5, 3]
@@ -86,6 +93,9 @@ def reverse(lst):
         lst[hiindex] = lst[i] 
         lst[i] = temp
         hiindex -= 1            # decrement the high index pointer
+x = [3, 2, 4, 5, 1]
+reverse(x)
+print(x)
 #The "in place" solution does not need a new lis.
 
 #F
@@ -100,6 +110,9 @@ def rotate(lst, k):
   for i in range(len(lst)):     #loop through the list
     lst_new[i] = lst[i-k]   #rotate the list
   return lst_new    #return the new list
+x = [1, 2, 3, 4, 5]
+rotate(x, 3)
+print(x)
 
 #H
 superbowls = {'joe montana': 4, 'tom brady':3, 'joe flacco': 0}
@@ -153,6 +166,9 @@ def replace_all(d, x, y):
     else:
       if v == x:   #check is the value is x
         d[k] = y     #replace the x value with y
+d = {1: {2:3, 3:4}, 2:{4:4, 5:3}}
+replace_all(d,3,1)
+print(d)
  
 #J
 """
@@ -168,3 +184,7 @@ def rm(d, x):
       mark.append(k)    #mark the key
   for i in mark:    #loop through the list to delete all items being marked
     del d[i]
+d = {1:2, 2:3, 3:2, 4:3}
+rm(d,2)
+print(d)
+#```
