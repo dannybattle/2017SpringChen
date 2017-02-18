@@ -12,7 +12,6 @@ import os
 import random
 import time
 
-
 #Define the ascii card for the game
 CARD = """\
 ┌───────┐
@@ -159,6 +158,7 @@ class Deck(object):
         for suit in range(4):
             for rank in ["2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"]:
                 self.cards.append(Card(suit, rank))
+                
     #print out the whole deck
     def __str__(self):
         res = []
@@ -371,12 +371,11 @@ while (1):
             print("     %s wins the round!!!\n" % Catherine.name)
             Game1.award(Catherine)
         else:
-            print("  Cards dealt are equal, we have a War!\n")
+            print("  Cards dealt are equal, we have a War!\n")       
     print(" After this round: ")
     print(" %s has %r cards in hand now" %(Danny.name, len(Danny)))
     print(" %s has %r cards in hand now\n" %(Catherine.name, len(Catherine)))
     print(" Temperary list holds %r cards now\n" % (len(Game1.tight)))
     round_count += 1
-
 print("Total rounds played in this game is %s" % round_count)
 ```
