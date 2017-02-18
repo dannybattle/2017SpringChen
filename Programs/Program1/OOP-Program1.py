@@ -379,4 +379,4 @@ while (1):
     round_count += 1
 
 print("Total rounds played in this game is %s" % round_count)
-```python
+```
