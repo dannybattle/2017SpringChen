@@ -45,7 +45,6 @@ class Grid(object):
         """Create the grid display, initially all white.
         rows, cols are the grid size in rows and columns.
         width, height are the window size in pixels.
-
         Args:
             rows:  number of rows of cells in the grid (vertical divisions)
             cols:  number of columns of cells in the grid (horizontal divisions)
@@ -63,7 +62,6 @@ class Grid(object):
 
     def get_cur_color(self):
         """Return the currently chosen color in the color wheel.
-
         The color wheel is a list of colors selected to be contrast with each other.
         The first few entries are bright primary colors; as we cycle through the color
         wheel, contrast becomes less, but colors should remain distinct to those with
@@ -71,11 +69,9 @@ class Grid(object):
         choices and starts recycling previously used colors.   The color wheel starts
         out in position 0, so get_cur_color() may be called before get_next_color() has
         been called.
-
         Args:  none
         Returns:
             a 'color' that can be passed to fill_cell
-
         FIXME: The color wheel should produce colors of contrasting brightness
         as well as hue, to maximize distinctness for dichromats (people with
         "color blindness".  Maybe generating a good color wheel can be part of a
@@ -86,13 +82,11 @@ class Grid(object):
 
     def get_next_color(self):
         """Advance the color wheel, returning the next available color.
-
         The color wheel is a list of colors selected to be contrast with each other.
         The first few entries are bright primary colors; as we cycle through the color
         wheel, contrast becomes less, but colors should remain distinct to those with
         normal color vision until the color wheel cycles all the way around in 18
         choices and starts recycling previously used colors.
-
         Args:  none
         Returns:
             a 'color' that can be passed to fill_cell
@@ -104,7 +98,6 @@ class Grid(object):
 
     def fill_cell(self, row, col, color):
         """Fill cell[row,col] with color.
-
         Args:
             row:  which row the selected cell is in.  Row 0 is the top row,
             row 1 is the next row down, etc.  Row should be between 0
@@ -125,14 +118,13 @@ class Grid(object):
         mark.setFill(color)
         mark.draw(self.win)
 
-    def draw_cell(self, color, bottom=0, top=0, left=0, right=0):
-        rect = Rectangle(Point(100, 100), Point(400, 400))
-        rect.setFill(color_rgb(255, 255, 255))  # White background
+    def draw_cell(self, color, xtop, ytop, xbot, ybot):
+        rect = Rectangle(Point(xtop, ytop), Point(xbot, ybot))
+        rect.setFill(color)  # White background
         rect.draw(self.win)
 
     def label_cell(self, row, col, text, color=''):
         """Place text label on cell[row,col].
-
         Args:
             row:  which row the selected cell is in.  Row 0 is the top row,
             row 1 is the next row down, etc.  Row should be between 0
@@ -185,7 +177,6 @@ class Grid(object):
 
     def close(self):
         """ Close the graphics window (shut down graphics).
-
         Args: none
         Returns: nothing
         Effect:  the grid graphics window is closed.
@@ -201,32 +192,37 @@ class Grid(object):
             g = c['rgb'][1]
             b = c['rgb'][2]
             self.color_wheel.append(color_rgb(r, g, b))
-
-        print(self.color_wheel)
+        #
+        # print(self.color_wheel)
 
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
         num_colors = 9
     else:
-        num_colors = sys.argv[1]
+        num_colors = int(sys.argv[1])
 
-    G = Grid()
-    G.load_colors('colors.json')
-    rows = int(sqrt(num_colors))
-    cols = int(sqrt(num_colors))
-    # print("Testing grid: 3x3 with 3x3 subgrid")
-    G.make(rows, cols, 500, 500)
-    G.sub_grid_dim(rows, cols)
-    for row in range(rows):
-        for col in range(cols):
-            color = G.get_next_color()
-            G.fill_cell(row, col, color)
-            for i in range(rows):
-                for j in range(cols):
-                    G.sub_label_cell(row, col, i, j, str(i) + str(j))
+    # Create a sentinel to determine if the input can display square grid.
+    sentinel = sqrt(num_colors) - int(sqrt(num_colors))
+    if sentinel == 0:
+        Graph = Grid()
+        Graph.load_colors('colors.json')
+        rows = cols =int(sqrt(num_colors))
+        Graph.make(rows, cols, 500, 500)
+        Graph.sub_grid_dim(rows, cols)
+        for row in range(rows):
+            for col in range(cols):
+                count = 1
+                color = Graph.get_next_color()
+                Graph.fill_cell(row, col, color)
+                for i in range(rows):
+                    for j in range(cols):
+                        Graph.sub_label_cell(row, col, i, j, str(count%(num_colors+1)))
+                        count += 1
 
-    G.draw_cell(color, 100, 100, 100, 100)
-
-    null = input("Press enter to exit ")
-    G.close()
+        Graph.draw_cell(white, 100, 100, 100, 100)
+        null = input("Press enter to exit ")
+        Graph.close()
+    else:
+        print ("Not So Much")
+        sys.exit(0)
