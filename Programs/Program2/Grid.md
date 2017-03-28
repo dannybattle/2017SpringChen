@@ -1,3 +1,4 @@
+```python
 """
 Grid display.
 Displays a rectangular grid of cells, organized in rows and columns
@@ -226,3 +227,4 @@ if __name__ == "__main__":
     else:
         print ("Not So Much")
         sys.exit(0)
+```
