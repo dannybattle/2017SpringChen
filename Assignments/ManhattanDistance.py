@@ -1,4 +1,3 @@
-```python
 '''
 Huiluo Chen
 2143 OOP Programming
@@ -19,4 +18,4 @@ def distance_find(cell1, cell2):
     #remove the duplicated cell
     total_dist = row_dist + col_dist - 1
     return total_dist
-```
+
