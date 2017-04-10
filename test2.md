@@ -1,3 +1,4 @@
+```python
 class Candy(object):
     def __init__(self, item_id, name,type, cost_item, cost_bag):
         self.item_id = item_id
@@ -129,3 +130,4 @@ Email1 = Email("fake message 1", "fake subject 1", "joe@yahoo.com", "sue@gmail.c
 Logger.add(Email1)
 
 list1 = Logger.get_received_by("sue@gmail.com")
+```
