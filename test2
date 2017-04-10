@@ -1,0 +1,83 @@
+# class Candy(object):
+#     def __init__(self, item_id, name,type, cost_item, cost_bag):
+#         self.item_id = item_id
+#         self.name = name
+#         self.type = type
+#         self.items_per_bag = cost_bag/cost_item
+#         self.cost_item = cost_item
+#         self.cost_bag = cost_bag
+#
+# class Case(Candy):
+#     def __init__(self, item_id, name, type, cost_item, cost_bag, weight, amount, discount):
+#         Candy.__init__(self, item_id, name, type, cost_item, cost_bag)
+#         self.weight =  weight
+#         self.amount = amount
+#         self.cost_disc = self.cost_bag*(1-discount)
+#
+# class Inventory(object):
+#     def __init__(self):
+#         self.invent = {}
+#
+#     def ADDItem (self, key, price, amount):
+#         if key in self.invent:
+#             self.invent[key].amount += amount
+#             self.invent[key].price = price
+#         if key not in self.invent:
+#             print("please create the candy case first")
+#
+# pi = Case(563,"pi", "bag",1,20,20,1,0.22 )
+# invent1 = Inventory()
+
+# class point(object):
+#     def __init__(self, x = 0, y = 0):
+#         self.coordinate = (x,y)
+#
+#     def __str__(self):
+#         return "(%r, %r)" %(self.coordinate[0],self.coordinate[1])
+#
+#     def move_point(self, dx, dy):
+#         self.coordinate = (self.coordinate[0]+dx, self.coordinate[1]+dy)
+#
+# d1 = point(1,1)
+# print(d1)
+# d1.move_point(1,2)
+# print(d1)
+#
+# class line(point):
+#     def __init__(self):
+# class rectangle(line):
+#     pass
+
+# def replace(thelist,a,b):
+#     for i in range(len(thelist)):
+#         if thelist[i] == a:
+#             thelist[i] = b
+#     return thelist
+#
+# thelist = [1,2,3,1]
+# replace(thelist, 1, 4)
+# print (thelist)
+
+# def pigify(string):
+#     vowel = ['a', 'e', 'i', 'o', 'u']
+#     words = string.split()
+#     for word in words:
+#         if word[0] == 'y' or word[0] in vowel:
+#             word += 'hay'
+#         elif word[0] == 'q' and word[1] == 'u':
+#            word = word[1:]
+#            word = word[1:]
+#            word += 'quay'
+#         elif word[0] not in vowel:
+#             for i in range(len(word)):
+#                 if word[i] in vowel:
+#                     while(word[0] not in vowel):
+#                         word += word[0]
+#                         word = word[1:]
+#                     word += 'ay'
+#             else:
+#                 word += 'ay'
+#         print("%r ")%word
+#
+# sentence = ("hello question i h love you")
+# pigify(sentence)
