@@ -1,83 +1,131 @@
-# class Candy(object):
-#     def __init__(self, item_id, name,type, cost_item, cost_bag):
-#         self.item_id = item_id
-#         self.name = name
-#         self.type = type
-#         self.items_per_bag = cost_bag/cost_item
-#         self.cost_item = cost_item
-#         self.cost_bag = cost_bag
-#
-# class Case(Candy):
-#     def __init__(self, item_id, name, type, cost_item, cost_bag, weight, amount, discount):
-#         Candy.__init__(self, item_id, name, type, cost_item, cost_bag)
-#         self.weight =  weight
-#         self.amount = amount
-#         self.cost_disc = self.cost_bag*(1-discount)
-#
-# class Inventory(object):
-#     def __init__(self):
-#         self.invent = {}
-#
-#     def ADDItem (self, key, price, amount):
-#         if key in self.invent:
-#             self.invent[key].amount += amount
-#             self.invent[key].price = price
-#         if key not in self.invent:
-#             print("please create the candy case first")
-#
-# pi = Case(563,"pi", "bag",1,20,20,1,0.22 )
-# invent1 = Inventory()
+class Candy(object):
+    def __init__(self, item_id, name,type, cost_item, cost_bag):
+        self.item_id = item_id
+        self.name = name
+        self.type = type
+        self.items_per_bag = cost_bag/cost_item
+        self.cost_item = cost_item
+        self.cost_bag = cost_bag
 
-# class point(object):
-#     def __init__(self, x = 0, y = 0):
-#         self.coordinate = (x,y)
-#
-#     def __str__(self):
-#         return "(%r, %r)" %(self.coordinate[0],self.coordinate[1])
-#
-#     def move_point(self, dx, dy):
-#         self.coordinate = (self.coordinate[0]+dx, self.coordinate[1]+dy)
-#
-# d1 = point(1,1)
-# print(d1)
-# d1.move_point(1,2)
-# print(d1)
-#
-# class line(point):
-#     def __init__(self):
-# class rectangle(line):
-#     pass
+class Case(Candy):
+    def __init__(self, item_id, name, type, cost_item, cost_bag, weight, amount, discount):
+        Candy.__init__(self, item_id, name, type, cost_item, cost_bag)
+        self.weight =  weight
+        self.amount = amount
+        self.cost_disc = self.cost_bag*(1-discount)
 
-# def replace(thelist,a,b):
-#     for i in range(len(thelist)):
-#         if thelist[i] == a:
-#             thelist[i] = b
-#     return thelist
-#
-# thelist = [1,2,3,1]
-# replace(thelist, 1, 4)
-# print (thelist)
+class Inventory(object):
+    def __init__(self):
+        self.invent = {}
 
-# def pigify(string):
-#     vowel = ['a', 'e', 'i', 'o', 'u']
-#     words = string.split()
-#     for word in words:
-#         if word[0] == 'y' or word[0] in vowel:
-#             word += 'hay'
-#         elif word[0] == 'q' and word[1] == 'u':
-#            word = word[1:]
-#            word = word[1:]
-#            word += 'quay'
-#         elif word[0] not in vowel:
-#             for i in range(len(word)):
-#                 if word[i] in vowel:
-#                     while(word[0] not in vowel):
-#                         word += word[0]
-#                         word = word[1:]
-#                     word += 'ay'
-#             else:
-#                 word += 'ay'
-#         print("%r ")%word
-#
-# sentence = ("hello question i h love you")
-# pigify(sentence)
+    def AddItem (self, key, name, price, amount):
+        self.key = {}
+        self.key[name] = name
+        self.key[price] = price
+        self.key[amount] = amount
+        if key in self.invent:
+            self.invent[key][amount] += amount
+            self.invent[key][price] = price
+            self.invent[key][name] = name
+        if key not in self.invent:
+            self.invent[key] = self.key
+
+    def SellItem(self, key, amount):
+        if key in self.invent:
+            self.invent[key][amount] -= amount
+        else:
+            print("No key is found")
+
+
+class point(object):
+    def __init__(self, x = 0, y = 0):
+        self.coordinate = (x,y)
+
+    def __str__(self):
+        return "(%r, %r)" %(self.coordinate[0],self.coordinate[1])
+
+    def move_point(self, dx, dy):
+        self.coordinate = (self.coordinate[0]+dx, self.coordinate[1]+dy)
+
+d1 = point(1,1)
+print(d1)
+d1.move_point(1,2)
+print(d1)
+
+class line(point):
+    def __init__(self):
+class rectangle(line):
+    pass
+
+def replace(thelist,a,b):
+    for i in range(len(thelist)):
+        if thelist[i] == a:
+            thelist[i] = b
+    return thelist
+
+thelist = [1,2,3,1]
+replace(thelist, 1, 4)
+print (thelist)
+
+def pigify(string):
+    vowel = ['a', 'e', 'i', 'o', 'u']
+    words = string.split()
+    for word in words:
+        if word[0] == 'y' or word[0] in vowel:
+            word += 'hay'
+        elif word[0] == 'q' and word[1] == 'u':
+           word = word[1:]
+           word = word[1:]
+           word += 'quay'
+        elif word[0] not in vowel:
+            for i in range(len(word)):
+                if word[i] in vowel:
+                    while(word[0] not in vowel):
+                        word += word[0]
+                        word = word[1:]
+                    word += 'ay'
+            else:
+                word += 'ay'
+        print("%r ")%word
+
+sentence = ("hello question i h love you")
+pigify(sentence)
+
+class Email(object):
+    def __init__(self, msg, subj, sender, receiver):
+        self.message = msg
+        self.subject = subj
+        self.sender = sender
+        self. receiver = receiver
+
+class EmailLogger(object):
+    def __init__(self):
+        #super().__init__(self, msg, subj, sender)
+        self.emails = []
+        self.emails_received = []
+
+    def __str__(self):
+        return self.emails[0].subject
+
+    def add(self, email):
+        self.emails.append(email)
+
+    def get_sent_by(self, sender):
+        self.emails_sent = []
+        for message in self.emails:
+            if message.sender == sender:
+                self.emails_sent.append(message)
+        return self.emails_sent
+
+    def get_received_by(self, receiver):
+        self.emails_received = []
+        for message in self.emails:
+            if message.receiver == receiver:
+                self.emails_received.append(message)
+        return self.emails_received[0]
+
+Logger = EmailLogger()
+Email1 = Email("fake message 1", "fake subject 1", "joe@yahoo.com", "sue@gmail.com")
+Logger.add(Email1)
+
+list1 = Logger.get_received_by("sue@gmail.com")
