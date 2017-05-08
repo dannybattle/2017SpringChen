@@ -1,6 +1,6 @@
 ```python
 '''
-Object&Oriental  Take Home Final
+Object&Oriental Programing Take Home Final
 Huiluo Chen
 Due: 10th May
 Description: This program simulates the Roulette Wheel game.
@@ -104,10 +104,12 @@ class game(object):
         # determine the payout based on player's bet
         payout = self.table.payout(self.current_player.current_bet)
         print("The spin result is",result["number"], "in",result["color"])
+        
         # check if player bet with any numbers directly
         if result["number"] in self.current_player.current_bet:
             self.current_player.total_bank += payout*self.current_player.current_bet_amount
             print("You win the round and your total bank now is", self.current_player.total_bank)
+            
         # if no numbers present in player's bet, check if the bet type wins
         elif self.current_player.current_bet[0] in self.table.comb:
             if result["number"] in self.table.comb[self.current_player.current_bet[0]]:
@@ -117,6 +119,7 @@ class game(object):
                 # Remove the bet amount from the total bank
                 self.current_player.total_bank += -self.current_player.current_bet_amount
                 print("You lose the round and your total bank now is", self.current_player.total_bank)
+                
         # Remove the bet amount from the total bank
         else:
             self.current_player.total_bank += -self.current_player.current_bet_amount
