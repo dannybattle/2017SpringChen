@@ -142,6 +142,7 @@ class Player(object):
             self.round_rolls += 1
             roll = self.dice.Roll()
             if roll == 0:
+                self.round_score = 0
                 break
             self.round_score += roll
         self.score += self.round_score
@@ -155,10 +156,11 @@ class Player(object):
     """
 
     def conservative(self):
-        while self.round_rolls < 5 and self.round_score < 15:
+        while self.round_rolls < 4 and self.round_score < 20:
             self.round_rolls += 1
             roll = self.dice.Roll()
             if roll == 0:
+                self.round_score = 0
                 break
             self.round_score += roll
         self.score += self.round_score
@@ -172,10 +174,11 @@ class Player(object):
     """
 
     def aggressive(self):
-        while self.round_rolls < 8 or self.round_score < 27:
+        while self.round_rolls < 8 or self.round_score < 40:
             self.round_rolls += 1
             roll = self.dice.Roll()
             if roll == 0:
+                self.round_score = 0
                 break
             self.round_score += roll
         self.score += self.round_score
@@ -197,6 +200,7 @@ class Player(object):
                 self.round_rolls += 1
                 roll = self.dice.Roll()
                 if roll == 0:
+                    self.round_score = 0
                     break
                 temp_score += roll
             self.score = temp_score
