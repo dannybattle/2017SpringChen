@@ -189,7 +189,7 @@ class Player(object):
     """
 
     def sprint_to_finish(self):
-        if self.score / self.target_score >=0.8:
+        if self.score / self.target_score < 0.8:
             self.conservative()
         else:
             temp_score = self.score
